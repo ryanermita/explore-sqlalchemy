@@ -42,4 +42,5 @@ class ParentChild(Base):
 
 
 def recreate_db():
+    Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
