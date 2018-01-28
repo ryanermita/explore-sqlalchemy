@@ -16,7 +16,7 @@ class Parent(Base):
     __tablename__ = 'parent_table'
     parent_id = Column(Integer, primary_key=True)
     children = relationship("Child", secondary="parent_child_table",
-                            backref="parents")
+                            back_populates="parents")
 
     def __repr__(self):
         return "<Parent(parent_id='%s')>" % self.parent_id
@@ -25,6 +25,8 @@ class Parent(Base):
 class Child(Base):
     __tablename__ = 'child_table'
     child_id = Column(Integer, primary_key=True)
+    parents = relationship("Parent", secondary="parent_child_table",
+                           back_populates="children")
 
     def __repr__(self):
         return "<Child(child_id='%s')>" % self.child_id
