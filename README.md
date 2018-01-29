@@ -33,7 +33,7 @@ simple app to explore sqlalchemy
     a.children # [<ParentChild(parent_id='1', child_id=1)>]
     a.children[0].child # <Child(child_id='1')>
 
-    # the same with child object
+    # the same with child object to access the parent object.
     c = session.query(Parent).get(1)
     c.parents # [<ParentChild(parent_id='1', child_id=1)>]
     c.parents[0].child # [<ParentChild(parent_id='1', child_id=1)>]
