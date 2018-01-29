@@ -36,5 +36,24 @@ simple app to explore sqlalchemy
     # the same with child object to access the parent object.
     c = session.query(Parent).get(1)
     c.parents # [<ParentChild(parent_id='1', child_id=1)>]
-    c.parents[0].child # [<ParentChild(parent_id='1', child_id=1)>]
+    c.parents[0].parent # [<Parent(parent_id=1)>]
+  ```
+
+- `many-to-many` via `association proxy` conceals the usage of a “middle” attribute between two tables.
+
+  ```
+    # we can access directly the parent or child attributes
+    # without explicitly accessing the association table.
+
+    # select parent
+    p = session.query(Parent).get(1)
+    p.children.append(Child())
+    session.commiy()
+
+    p.children # [<Child(child_id=1)>]
+
+    # or
+
+    c = session.query(Child).get(1)
+    c.parents # [<Parent(parent_id='1')>]
   ```

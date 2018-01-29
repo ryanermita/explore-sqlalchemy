@@ -29,10 +29,9 @@ def test_create():
     p = session.query(Parent).get(1)
 
     # create child record via association table.
-    a = ParentChild(extra_data="some data")
-    a.child = Child()
+    c = Child()
 
     # append child to parent table
     # then commit.
-    p.children.append(a)
+    p.children.append(c)
     session.commit()
